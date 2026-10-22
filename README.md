@@ -2,6 +2,8 @@
 
 A local job-search workspace. *Tuloy* means to continue; as a welcome, it invites you in.
 
+[Meet Tuloy](https://tuloy-career.creamykite256.chatgpt.site/) · [The story behind the name](https://tuloy-career.creamykite256.chatgpt.site/about/)
+
 This is the setup I use to organize my job search. I’m sharing the application in case it’s useful to you too. Bring your own CV, preferences, and sources.
 
 ## Run it locally

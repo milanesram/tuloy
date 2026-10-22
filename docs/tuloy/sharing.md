@@ -37,3 +37,9 @@ The publishing command verifies the exact destination, a clean main branch, and 
 `publication-files.json` lists approved source paths. New files stop publication until reviewed and added to that list; file deletion is supported. Never add personal files to the list. Private paths remain excluded even if listed. Code edits still need review: an allowlist cannot detect every personal fact pasted into a source file. The exporter also checks common credential patterns and local home paths. Neither Git ignores nor this bounded content check is an exhaustive privacy detector.
 
 Do not run the app or setup in the publishing checkout. Keep personal configuration and results in your working application. The public history begins with the clean source, retains MIT attribution, and uses the maintainer's GitHub noreply address for commits.
+
+## Published public information pages
+
+The [Tuloy introduction](https://tuloy-career.creamykite256.chatgpt.site/) and [About page](https://tuloy-career.creamykite256.chatgpt.site/about/) are hosted as a separate static Sites project. The public site contains only rendered information pages, CSS, fonts, the original mark, and small theme/copy interactions. There are no workspace routes, API endpoints, profiles, search parameters, results, or records. Workspace buttons on the local pages become GitHub installation links on the public site. It does not connect to a local server.
+
+The static Site has its own source repository and saved deployment. Updating the local application or pushing application code to GitHub does not automatically deploy the website. Rebuild and publish only the isolated public Site when its pages change; do not deploy the Next.js working application. The local landing/About pages remain available in the working application.
