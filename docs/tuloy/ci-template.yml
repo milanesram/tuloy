@@ -1,0 +1,21 @@
+name: Tuloy validation
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm install --ignore-scripts
+      - run: npm --prefix web ci --ignore-scripts
+      - run: npm run test:tuloy
+      - run: node --test tests/manual-review-queue.test.mjs tests/ops-dismiss.test.mjs tests/fresh-search.test.mjs
+      - run: npm --prefix web test
+      - run: npm --prefix web run typecheck
+      - run: npm run build

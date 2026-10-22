@@ -1,0 +1,15 @@
+# Blank Tuloy profile. Only facts supplied by the person using the app belong here.
+candidate:
+  full_name: ""
+  email: ""
+  location: ""
+target_roles:
+  primary: []
+  archetypes: []
+narrative: {}
+compensation: {}
+location: {}
+language:
+  output: en
+cv:
+  output_format: html

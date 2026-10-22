@@ -1,0 +1,7 @@
+title_filter:
+  positive: []
+  negative: []
+location_filter:
+  allow: []
+tracked_companies: []
+job_boards: []
