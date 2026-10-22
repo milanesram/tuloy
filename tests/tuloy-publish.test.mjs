@@ -14,9 +14,9 @@ test('code publication starts fresh, excludes committed private data, blocks new
   git(source,'init','-q','-b','main');git(target,'init','-q','-b','main');git(target,'remote','add','origin','https://github.com/milanesram/tuloy.git');
   put('README.md','Public code');put('.gitignore','data/\ncv.md\nportals.yml\nREADME.md\n');
   put('cv.md','PRIVATE CV');put('portals.yml','PRIVATE PARAMETERS');put('data/results.md','PRIVATE RESULTS');
-  for(const name of ['config/profile.example.yml','config/plugins.example.yml','config/cv-facts.example.json']) put(name,'{}');
+  for(const name of ['config/profile.example.yml','config/plugins.example.yml','config/cv-facts.example.json','config/career-strategies.example.json']) put(name,'{}');
   put('docs/tuloy/ci-template.yml','name: Test');
-  const approved=['README.md','.gitignore','publication-files.json','config/profile.example.yml','config/plugins.example.yml','config/cv-facts.example.json','config/portals.example.yml','docs/tuloy/ci-template.yml','.github/workflows/tuloy-ci.yml'];
+  const approved=['README.md','.gitignore','publication-files.json','config/profile.example.yml','config/plugins.example.yml','config/cv-facts.example.json','config/career-strategies.example.json','config/portals.example.yml','docs/tuloy/ci-template.yml','.github/workflows/tuloy-ci.yml'];
   put('publication-files.json',JSON.stringify(approved));
   git(source,'add','-f','.');git(source,'-c','user.name=Fixture','-c','user.email=fixture@example.invalid','commit','-qm','Private original history');
   publishCode(source,target,'Initial public source');

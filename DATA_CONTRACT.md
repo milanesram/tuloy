@@ -10,6 +10,8 @@ These files contain your personal data, customizations, and work product. Update
 |------|---------|
 | `cv.md` | Your CV in markdown |
 | `config/profile.yml` | Your identity, targets, comp range |
+| `config/career-strategies.json` | Private career routes and active selection; absence preserves existing routing. Only explicit saves update this file with revision checks and shared locking/atomic writes. No candidate facts are inferred. |
+| `data/discovery-schedules.json`, `data/scheduled-discovery/*` | Private discovery settings, run history and result receipts. New schedules start paused. The worker never writes applications, pipeline, CV or scan history; review admission remains explicit. |
 | `config/cv-facts.json` | Your CV fact-check allowlist and forbidden phrases |
 | `config/benchmarks.yml` | Your market calibration benchmark overrides (optional; copy `templates/benchmarks.yml` here and edit — read by `funnel-velocity.mjs`) |
 | `config/local-paths.txt` | Files *this clone* owns that upstream does not ship — one repo-relative path per line (optional; copy `config/local-paths.example.txt` here and edit). See [Fork-local paths](#fork-local-paths) below |
@@ -24,6 +26,7 @@ These files contain your personal data, customizations, and work product. Update
 | `documents/*` | Your profile intake sources — master CV, LinkedIn export, diplomas, reference letters (PII — gitignored except scaffold; read locally by `intake.mjs`, see `modes/intake.md`). Scaffold files (`README.md`, `.gitkeep`) are system-owned. |
 | `data/.hired-share-state.json` | Hired Wall ask-state (asked/shared/later/never per hire) — the anti-nag memory; never committed, never read by anything but `hired-share.mjs` |
 | `data/intake-state.json` | Fingerprints of already-ingested intake sources (written by `node intake.mjs --commit`; makes re-runs propose only new material — safe to delete, next intake re-proposes everything) |
+| `data/opportunity-workflow.md` | Private canonical preparation notes: selected/preparing stages, resume and document references, next actions, user-reviewed Career Project returns and evidence research. Written only by `opportunity-workflow.mjs` under its shared lock with optimistic revisions and atomic writes. Missing means no notes; malformed content is preserved and reported. Never changes CV facts, qualification, applications, scan history or submission status. Excluded from source exports with the rest of `data/`. |
 | `portals.yml` | Your customized company list |
 | `config/plugins.yml` | Your plugin activation toggles (opt-in; seeded from `config/plugins.example.yml`) |
 | `opencode.json` | Your OpenCode project config (MCP servers, model, formatter, LSP) — gitignored, copy `opencode.example.json` to start |

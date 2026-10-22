@@ -5,6 +5,7 @@ import { resolveEmployerIdentity } from './employer-identity.mjs';
 import { dutyAwareSeniority, materialRequirements, occupationEvidence, requirementSummary } from './qualification-evidence.mjs';
 import { structuredQualificationText } from '../../../lib/posting-evidence.mjs';
 import { reconcileWorkArrangement } from './work-arrangement.mjs';
+import { selectConfiguredRoute } from './career-strategy.mjs';
 
 const clean = (value) => typeof value === "string" ? value.trim() : "";
 const bulletText = (items) => items.length ? items.map((item) => `• ${item}`).join("\n") : null;
@@ -220,9 +221,10 @@ export function classifyLiteOpportunity(input = {}) {
   const identity = input.company !== undefined || input.employerIdentityStatus || input.employerIdentityEvidence
     ? resolveEmployerIdentity(input) : null;
   const identityReview = ["AMBIGUOUS", "CONFLICT"].includes(identity?.employerIdentityStatus);
-  const lane = laneFromEvidence(title, jd);
-  const duties = targetDutySignals(jd);
-  if (lane.code === 'C') for (const [pattern,label] of [
+  const custom = input.candidateEvidence?.careerStrategy?.active === 'custom';
+  const lane = custom ? selectConfiguredRoute(title, jd, input.candidateEvidence.careerStrategy) : laneFromEvidence(title, jd);
+  const duties = custom ? lane.duties : targetDutySignals(jd);
+  if (!custom && lane.code === 'C') for (const [pattern,label] of [
     [/troubleshoot|tickets?|user support|help ?desk|desktop support/i, 'technical support / troubleshooting'],
     [/system testing|system configuration|application support|technical documentation|IT projects?/i, 'systems / application delivery'],
     [/access provisioning|IAM|alert triage|security monitoring|SOC/i, 'access / security operations'],
@@ -230,13 +232,17 @@ export function classifyLiteOpportunity(input = {}) {
   ]) if (pattern.test(jd)) duties.push(label);
   const requirements = materialRequirements(structuredQualificationText(jd, input), input.candidateEvidence);
   const arrangement = reconcileWorkArrangement({ ...input, jd, location });
-  const occupation = occupationEvidence(title, jd, requirements);
+  const observedOccupation = occupationEvidence(title, jd, requirements);
+  // The inherited occupational exclusions describe the legacy governance
+  // strategy, not every profession. Custom routes retain universal evidence
+  // gates and explicit unpaid exclusions, and always require scope review.
+  const occupation = custom ? { ...observedOccupation, legalPrimary:false, engineeringPrimary:false, financialPrimary:false, technicalGovernance:false, reasons:observedOccupation.reasons.filter(reason => !/^UNRELATED_ROLE_FAMILY|^MANDATORY_TECHNICAL_GOVERNANCE/.test(reason)) } : observedOccupation;
   if (occupation.unpaid) requirements.push({ category: 'EMPLOYMENT_TYPE', requirement: 'explicit unpaid / volunteer position', importance: 'REQUIRED', evidence: occupation.reasons.find(reason => reason.startsWith('EMPLOYMENT_TYPE_EXCLUSION')), candidateEvidence: 'MATERIAL_GAP', comparisonReason: 'explicit arrangement conflicts with paid-professional targeting, not a claim about candidate capabilities', candidateSource: null, specialized: false });
-  const seniority = dutyAwareSeniority(title, jd, duties, seniorityBandFromTitle(title), requirements, lane.code);
+  const seniority = custom ? {band:'SCOPE REVIEW',classification:'UNCLEAR',bridge:'UNCLEAR',years:null,reasons:['CONFIGURED_STRATEGY_SCOPE_REVIEW: verify responsibility level and candidate evidence manually'],evidence:{}} : dutyAwareSeniority(title, jd, duties, seniorityBandFromTitle(title), requirements, lane.code);
   const engineering = { technicalTitle: /\b(engineer|architect|developer)\b/i.test(title), engineeringHeavy: occupation.engineeringPrimary, technicalGovernance: occupation.technicalGovernance };
-  const unrelated = unrelatedAssessment(title, jd, duties, lane);
+  const unrelated = custom ? {unrelated:false,reason:null} : unrelatedAssessment(title, jd, duties, lane);
   if (lane.code === "C" && unrelated.reason === "SOC alert monitoring") unrelated.unrelated = false;
-  const strengths = evidenceSignals(title, jd);
+  const strengths = custom ? duties : evidenceSignals(title, jd);
   const risks = [];
   risks.push(...arrangement.workArrangementReasons);
   risks.push(...occupation.reasons);
@@ -298,7 +304,7 @@ export function classifyLiteOpportunity(input = {}) {
     admissionReasons: gate.outcome === 'FAIL' ? gate.reasons : lane.code === "UNCLEAR" ? ["target role-family evidence is insufficient"] : [`title/JD supports lane ${lane.code}`],
     careerLane: lane.lane,
     careerLaneCode: lane.code,
-    roleFamily: unrelated.unrelated || occupation.legalPrimary || occupation.engineeringPrimary || occupation.financialPrimary ? "UNRELATED" : lane.code === "UNCLEAR" ? "UNCLEAR" : lane.code === "C" ? "TARGET_TECHNICAL_ENTRY" : "TARGET_GOVERNANCE",
+    roleFamily: unrelated.unrelated || occupation.legalPrimary || occupation.engineeringPrimary || occupation.financialPrimary ? "UNRELATED" : lane.code === "UNCLEAR" ? "UNCLEAR" : custom ? "TARGET_CUSTOM" : lane.code === "C" ? "TARGET_TECHNICAL_ENTRY" : "TARGET_GOVERNANCE",
     roleFamilyReasons: occupation.reasons,
     employmentType: occupation.unpaid ? 'UNPAID_VOLUNTEER' : 'UNSPECIFIED',
     materialRequirements: requirements,
@@ -308,7 +314,7 @@ export function classifyLiteOpportunity(input = {}) {
     bridgeStatus: seniority.bridge,
     recommendedResume: lane.resume,
     recommendedResumeCode: lane.resumeCode,
-    recommendedResumeBase: input.candidateEvidence?.resumeBases?.[lane.code]?.source_name || null,
+    recommendedResumeBase: custom ? lane.resumeBase || null : input.candidateEvidence?.resumeBases?.[lane.code]?.source_name || null,
     postingStatus: status,
     sourceListingStatus: sourceStatus === 'ACTIVE' ? 'AVAILABLE' : sourceStatus,
     sourceConfidence,

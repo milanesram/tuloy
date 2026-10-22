@@ -33,6 +33,7 @@ import { classifyLiteOpportunity } from "@/lib/lite-recommendation.mjs";
 import { readJdArchive } from "@/lib/jd-archive.mjs";
 import { decodeEmployerIdentity, resolveEmployerIdentity } from "@/lib/employer-identity.mjs";
 import { candidateEvidenceFromSources } from "@/lib/qualification-evidence.mjs";
+import { readCareerStrategies } from '../../../career-strategies-read.mjs';
 
 /**
  * Resolve the career-ops "home" — the directory holding the user's sibling
@@ -669,7 +670,7 @@ export function configuredCandidateEvidence() {
   const raw = read("config/profile.yml");
   let profile = {};
   try { profile = raw ? (yaml.load(raw) as Record<string, any>) ?? {} : {}; } catch { /* unknown evidence, never inferred */ }
-  return candidateEvidenceFromSources({ cv: read("cv.md") ?? "", profile });
+  return { ...candidateEvidenceFromSources({ cv: read("cv.md") ?? "", profile }), careerStrategy: readCareerStrategies(careerOpsRoot()) };
 }
 
 function buildOpsOpportunity(

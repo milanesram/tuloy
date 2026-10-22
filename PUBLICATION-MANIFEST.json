@@ -8,8 +8,20 @@
       "sha256": "5dd801911eeb89fcd6859da2a14dfcd3f7df8ef7ed49622eb3de53a4be44d6d2"
     },
     {
+      "file": "career-strategies-read.mjs",
+      "sha256": "698f107fe2f4d2679e3c6fbad49d6be015d92c7d8f9e4da8e62bd93722747e67"
+    },
+    {
+      "file": "career-strategies.mjs",
+      "sha256": "ffad7d0f3bf29b4215e25b95544528e060538e9cbb83dbd70162057825f8728b"
+    },
+    {
       "file": "discover-authenticated.mjs",
       "sha256": "f7003b7625c175915e2e3f5bd7333a696a6bec2fe6dab95af0f525a1b599b007"
+    },
+    {
+      "file": "discovery-scheduler.mjs",
+      "sha256": "cffc4bdca808c3c4b714a2327a6de2d6979fcf27490fefcae6eb4f22f329e6d0"
     },
     {
       "file": "docs/authenticated-job-discovery.md",
@@ -21,11 +33,15 @@
     },
     {
       "file": "docs/tuloy/ci-template.yml",
-      "sha256": "5ddc8c673509295c20532c678a1eb7df2a70d3181404342c3648924004a40e2a"
+      "sha256": "e85c68c54d8befff351ac727ea9e2f165a89522890b29d96da8293302af85e93"
     },
     {
       "file": "docs/tuloy/mark.svg",
       "sha256": "2c3f62309b50e6cb030f30881af48b61172aefb05d9da22245bf673d133b2013"
+    },
+    {
+      "file": "docs/tuloy/preparation.md",
+      "sha256": "4a6ca5641b664805b80628bb2a91a14062a57f49cbc3b8a9c8f609dcf1984425"
     },
     {
       "file": "docs/tuloy/sharing.md",
@@ -33,15 +49,23 @@
     },
     {
       "file": "docs/tuloy/using-tuloy.md",
-      "sha256": "93639786c530b884604fba50e5a534999656c3fcf59a0dbf6ba82e8c703ccf30"
+      "sha256": "9df2edb8becacd7d99e1aa0c017de852b15fd431dae07f2f4bf65257ab2ceaf9"
     },
     {
       "file": "docs/tuloy/validation.md",
-      "sha256": "1ad22b49754e55691b05a6f5946348fff7933a8485b0e13d988815e5a00ae0b1"
+      "sha256": "903593a08947d87bdbc80aabffad4aa0b3ff1ca3f7a81d010630b3fee48102fa"
     },
     {
       "file": "docs/tuloy/wordmark.svg",
       "sha256": "ea59930ec9d81a00ba0550fbc11ae743f5795a61f898b1c1fc91d7b3c38b615c"
+    },
+    {
+      "file": "docs/tuloy/workspace-features.md",
+      "sha256": "deb47b1c613ac5264c22edbd3703d4325d1c7e632fc6a798d815e520a9ed5d10"
+    },
+    {
+      "file": "document-library.mjs",
+      "sha256": "a57a2d477765dd8893694bf9374c6844c1de3fbfa816fc960b10a97e0a038c49"
     },
     {
       "file": "fresh-search.mjs",
@@ -56,20 +80,32 @@
       "sha256": "6e267f5f1200c525a1294ae0b1235fba551b96b2adda9c096a459237b8189ca8"
     },
     {
+      "file": "lib/feature-read.mjs",
+      "sha256": "8752d8ad71fa8cfb9f741a9cd8e5da5f51a4a23ea0155c6d08d2461284eecb28"
+    },
+    {
+      "file": "lib/feature-store.mjs",
+      "sha256": "7c4ce40292f10362a9544ad5db0d92053233b28fabd1d1db93fea764a268d15e"
+    },
+    {
       "file": "lib/queue-admission.mjs",
-      "sha256": "95abe21356ef02a80ba07a74e20c4aa4a548333d1d4ad19be85f2ad6e3a6d2fe"
+      "sha256": "9b0c9b615bf610cdf56163cd80a902ae0d39a7009d5cff22bb93a34698f39d99"
     },
     {
       "file": "lib/strategy-sources.mjs",
       "sha256": "462cfc45247c65eca6e124dce477b2f49772c3b359d00173d019f9d19ba430bb"
     },
     {
+      "file": "opportunity-workflow.mjs",
+      "sha256": "bfe0ac990694effc602b758d6ca581f3f9be913ea231ddac01c2a778bd1cc2a0"
+    },
+    {
       "file": "publication-files.json",
-      "sha256": "cc9b8665f058ebbe390417e31aa99a64e7501e1b527f723756c08969e26c9902"
+      "sha256": "77c278718b0cd37f2a1f812a0267fb31ff90b699cde09880eb741857f3fe43dc"
     },
     {
       "file": "scripts/prepare-tuloy-showcase.mjs",
-      "sha256": "95e96595c59097c2c200cdc5f3064d5a19072842468b0b8f82664dde6bd3fe60"
+      "sha256": "8e0f99ac3dd4c2caa498a52dd83ce0ec4e3e83a05e5ff1ddd438011395a9f17c"
     },
     {
       "file": "scripts/publish-tuloy.mjs",
@@ -96,12 +132,16 @@
       "sha256": "49e489e26bc892b4dd162df1b813bf6af6e9628b0c46dfb81104208fbadffda3"
     },
     {
+      "file": "tests/opportunity-workflow.test.mjs",
+      "sha256": "b51af9e18ca11d7d2693434883247e85c50252b151bb76ef81ae02cbf9953861"
+    },
+    {
       "file": "tests/ops-dismiss.test.mjs",
       "sha256": "2ac36325b207fca22c5fbe263fc714f92cfe142e71004725b9f615bf1ec030b3"
     },
     {
       "file": "tests/tuloy-publish.test.mjs",
-      "sha256": "66c2168cc6319d8094164569ec038edfa17a91b1d2a027c3013213eebfeade40"
+      "sha256": "875f373682788bae1b2f28982a1afe2bcd8f01b474892c7d0de11aa23b6842c6"
     },
     {
       "file": "tests/tuloy-setup.test.mjs",
@@ -109,7 +149,11 @@
     },
     {
       "file": "tests/tuloy-showcase.test.mjs",
-      "sha256": "3f3f8ac676c563a8aef884559dc6d3c479ba77d505da51a58bf0ae5ca8f1fe07"
+      "sha256": "e5433fd34bbf9c052372c5f29400b9642785141457c95a69eaa5f56ed1307b4f"
+    },
+    {
+      "file": "tests/workspace-features.test.mjs",
+      "sha256": "61167ed39c6ec0c7246b82aa1763c0bea33f217efeb8e036dd745eae26edc157"
     },
     {
       "file": "tuloy-brand.json",
@@ -120,16 +164,64 @@
       "sha256": "a436a269e73889e901868bef5939927feb1f09c3b03cfd140d7f30696e93093f"
     },
     {
+      "file": "web/src/app/api/career-strategies/route.ts",
+      "sha256": "191f355f60dd39d7aac397bc99d754196d1ea72df702bdd21fab8ad13f734415"
+    },
+    {
+      "file": "web/src/app/api/discovery-schedules/route.ts",
+      "sha256": "5999d3e24b98ce590db469e2aeb69c31319635fdfdd520416e4d6a6fea9446e8"
+    },
+    {
+      "file": "web/src/app/api/documents/route.ts",
+      "sha256": "33efa978c05732b49850457f4a9dbaa64ff8474f07c9775b1130b0581cc44691"
+    },
+    {
       "file": "web/src/app/api/ops/dismiss/route.ts",
       "sha256": "7789262dd8078586962b9a3dea1fff358b234d2d610946a89c51afced08b25a2"
+    },
+    {
+      "file": "web/src/app/api/ops/preparation/route.ts",
+      "sha256": "bf90ebaf97205506ad12345c86a7ee91127682fcefdb519f1205bdfc3c27c3f1"
     },
     {
       "file": "web/src/app/apple-icon.png",
       "sha256": "cd69a2c1f773bacc934fc5d1b2b480b7475401c076ff3eb91f28d6b7f7595e11"
     },
     {
+      "file": "web/src/app/documents/page.tsx",
+      "sha256": "86f20805040951772ba3905e2cb4d7050a14645f8a8beb3be673b1b86ec33d3b"
+    },
+    {
+      "file": "web/src/app/scheduled-scans/page.tsx",
+      "sha256": "7bb97c237e692880a261291b80b6dcbcf1c6c149d433389785e4eba2388a43a3"
+    },
+    {
+      "file": "web/src/app/strategies/page.tsx",
+      "sha256": "9610de89f3bbb64803d4b7d109f716629f63145afb4a4b60b8c7c988a255f5af"
+    },
+    {
       "file": "web/src/app/welcome/page.tsx",
       "sha256": "93ef2a6bea4a49c377db61522eec640d7c60d0d409392680a88dfb795d1e9074"
+    },
+    {
+      "file": "web/src/components/career-strategies-view.tsx",
+      "sha256": "4978e4bbec38ef8a5b438e87fbe23583dcd660f69be93aa7e74e4b5af89ebf05"
+    },
+    {
+      "file": "web/src/components/discovery-schedules-view.tsx",
+      "sha256": "94175d20ae310cfe54c2386cc5daa5f7dbc29b23916d2b7169c735b0363c6202"
+    },
+    {
+      "file": "web/src/components/document-library-view.tsx",
+      "sha256": "7ec2b7fd2390aa0f5112353fb88320b6a31803e7d5e10b8087af1e5afc9edf43"
+    },
+    {
+      "file": "web/src/components/ops/preparation-notes.tsx",
+      "sha256": "c2c6e7c08f224946bbb049968bc222610daadbc872f6c29f09a38ddef790ebfe"
+    },
+    {
+      "file": "web/src/components/ops/preparation-stats.tsx",
+      "sha256": "c1cbe1a0ba301b14d444daf875bc2711edf7bdd9e4d25d30162f54cd7949fff8"
     },
     {
       "file": "web/src/components/tuloy-mark.tsx",
@@ -148,6 +240,14 @@
       "sha256": "42ab5089ba82f9ff9bce701e68b115621ee63df44aed46c0a389aca411851690"
     },
     {
+      "file": "web/src/lib/career-strategy.mjs",
+      "sha256": "c198dc8e4ecf7825d0a2926ca1c3061c0600a598b0ccf893299af1e01a7de674"
+    },
+    {
+      "file": "web/src/lib/core/workspace-features.ts",
+      "sha256": "4b42daea65a76ca04450595860a8d00b39b93cdd8141cdb062ab8e65047debb6"
+    },
+    {
       "file": "web/src/lib/discovery-qualification.mjs",
       "sha256": "632e1569651b7f9b6faeb4219181042e94051972175e785ed1d7017887494bd1"
     },
@@ -160,8 +260,16 @@
       "sha256": "3099bdff8827669526a1937609031934a335e11e118427b6dadcbefa1e89f544"
     },
     {
+      "file": "web/src/lib/preparation.mjs",
+      "sha256": "df65e0046e8d651dd66470dc22ccd65b3d4a06dc38e2ef8911d896931f974879"
+    },
+    {
       "file": "web/tests/lib/pending-inbox.test.mjs",
       "sha256": "e64b43aa917a59590e2255bdeb4e420ba4b21f57b8ca5ca9347ce726bfc7ab38"
+    },
+    {
+      "file": "workspace-features.mjs",
+      "sha256": "bbecfa0408fb2e57d0b51c0b4e7f020f2988627f6f9c9faaeacdec5ea5b92deb"
     },
     {
       "file": ".dockerignore",
@@ -181,7 +289,7 @@
     },
     {
       "file": ".gitignore",
-      "sha256": "c44db06158f96f2693377327a4f12f9d36bf7df25a34718737e1c107444f4b06"
+      "sha256": "a1a075b33dac96a9719c7fa0bffd53b11f81ce5b4bca1fb5cbcb01c08aa6dc21"
     },
     {
       "file": ".npmignore",
@@ -213,7 +321,7 @@
     },
     {
       "file": "DATA_CONTRACT.md",
-      "sha256": "38755f00dada7fff8fdb2159bf9926007e541e299349bb132e9d4cf783739ffc"
+      "sha256": "82b41ee8996e357d6e77f42d5b15dc72bee6ba7a9f5d83b47af24946f851c44a"
     },
     {
       "file": "DOCKER.md",
@@ -249,7 +357,7 @@
     },
     {
       "file": "README.md",
-      "sha256": "2126b1d2961eebabfa52328e00a7c492945dfe9e34a7aaa15a9ddcececf69b32"
+      "sha256": "c620a99ec530813a8f011d6970c689a23f382ad31b14ecf1c4c8c15f7746ab72"
     },
     {
       "file": "SECURITY.md",
@@ -1761,7 +1869,7 @@
     },
     {
       "file": "package.json",
-      "sha256": "ff60a345d2274226e86b41b4030672849f6b44ca1dfbf658366a9a2fa865d869"
+      "sha256": "54185739f36540f647b41b211526d5298a834b79e3efd235bdf55f4955a20021"
     },
     {
       "file": "paste-reply-tests.mjs",
@@ -4557,7 +4665,7 @@
     },
     {
       "file": "web/src/app/analytics/page.tsx",
-      "sha256": "1fad4c99ea73dd803b0609582db996fa9ca26976a8dd3308f71d33c6a9e27f72"
+      "sha256": "43341fcc41fed560ec79b3ab3c1ef8bb82dec0a2aa09a3d84c04cb7d9d007d66"
     },
     {
       "file": "web/src/app/api/apply/close/route.ts",
@@ -4717,7 +4825,7 @@
     },
     {
       "file": "web/src/app/explore/page.tsx",
-      "sha256": "e2581680db3527f64e43ce25bc3bdb0871b1104acc5a94a521ef73b4026a3b48"
+      "sha256": "7f14be3562986aa995ab2ba2455b821d49bc8b155b40eddccbc3a908dec69be0"
     },
     {
       "file": "web/src/app/followups/page.tsx",
@@ -4977,7 +5085,7 @@
     },
     {
       "file": "web/src/components/ops/ops-view.tsx",
-      "sha256": "a0a6effca94860243b96b427d4cec2adc1e4f34bbd78fafea72e5e631688fa9b"
+      "sha256": "288e9e5c7ed34940c9a06ea8c715037566e1b10e23585a4a7f8853dce59c6ace"
     },
     {
       "file": "web/src/components/pipeline-view.tsx",
@@ -5097,7 +5205,7 @@
     },
     {
       "file": "web/src/lib/career-ops.ts",
-      "sha256": "e7d3c3cb0ccb2e14931b5eb7e519a2dc5a2cbd5365159ffb7b472a04f5f335fe"
+      "sha256": "92031a5f6668f0460f057454e70f1ba498e811960ba7b8ce1b2d0ac3b9fdb540"
     },
     {
       "file": "web/src/lib/claude-invocation.mjs",
@@ -5285,11 +5393,11 @@
     },
     {
       "file": "web/src/lib/lite-recommendation.mjs",
-      "sha256": "48d81afa90c8ab5aaf9efe89c5e885061779a3c75ab936238db090d7ae2ec4b7"
+      "sha256": "c892ec5258fba47108f576b519fa4d98d695d810f55d9ac523c68050fee1cc81"
     },
     {
       "file": "web/src/lib/nav-items.ts",
-      "sha256": "6b94316f3c97f49bb532b31eedb299bad7d669a3cc74628a89553146bf422c63"
+      "sha256": "66144b3abbf18589413718421e70ca7e5d0ee9fb8eac38ee8f41e4af6693c15c"
     },
     {
       "file": "web/src/lib/ops.mjs",
@@ -5677,7 +5785,7 @@
     },
     {
       "file": "web/tsconfig.json",
-      "sha256": "7a6a4ea2cd6cc15a7953654c72a1668d9fdfa26a696f0b0841e259c4a88d4fba"
+      "sha256": "765ebccb68bc8a295a6d37829f6f2af04530225e3aac18a9f022785d0adbfc3c"
     },
     {
       "file": "weekly-digest.mjs",
@@ -5700,8 +5808,12 @@
       "sha256": "5bea5863b1b325e91908aa60e53da9f409936a92b075f0aca1edb52cefa15d78"
     },
     {
+      "file": "config/career-strategies.example.json",
+      "sha256": "775371cd098d3f4aff98d020529377abff4179ac756860d7331552d667db45f2"
+    },
+    {
       "file": ".github/workflows/tuloy-ci.yml",
-      "sha256": "5ddc8c673509295c20532c678a1eb7df2a70d3181404342c3648924004a40e2a"
+      "sha256": "e85c68c54d8befff351ac727ea9e2f165a89522890b29d96da8293302af85e93"
     }
   ]
 }

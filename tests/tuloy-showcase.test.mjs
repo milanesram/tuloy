@@ -7,7 +7,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 
 test('publication boundary rejects personal records, browser state, build output and symlinks by path', () => {
-  for (const name of ['cv.md','portals.yml','config/profile.yml','modes/_profile.md','modes/_custom.md','data/applications.md','documents/resume.docx','jds/posting.md','.career-ops-web/memory.md','authenticated-sources/session.json','web/.env.local','web/.next/server/app.html','node_modules/module/index.js','.git/config','../private.txt','cv.md.bak-2026','local.key','batch/log.txt','web/tests/rc08-frozen-replay.test.mjs','tests/operational-discovery-config.test.mjs','tests/job-search-v3.test.mjs','web/src/app/demo/page.tsx','web/src/components/tuloy-demo.tsx','docs/tuloy/demo-desktop.png','docs/tuloy/demo.webm','examples/tuloy/portals.example.yml']) assert.equal(publishable(name),false,name);
+  for (const name of ['cv.md','portals.yml','config/profile.yml','modes/_profile.md','modes/_custom.md','data/applications.md','data/discovery-schedules.json','data/scheduled-discovery/result.json','config/career-strategies.json','documents/resume.docx','jds/posting.md','.career-ops-web/memory.md','authenticated-sources/session.json','web/.env.local','web/.next/server/app.html','node_modules/module/index.js','.git/config','../private.txt','cv.md.bak-2026','local.key','batch/log.txt','web/tests/rc08-frozen-replay.test.mjs','tests/operational-discovery-config.test.mjs','tests/job-search-v3.test.mjs','web/src/app/demo/page.tsx','web/src/components/tuloy-demo.tsx','docs/tuloy/demo-desktop.png','docs/tuloy/demo.webm','examples/tuloy/portals.example.yml']) assert.equal(publishable(name),false,name);
   for (const name of ['README.md','docs/tuloy/brand.md','LICENSE','scripts/prepare-tuloy-showcase.mjs']) assert.equal(publishable(name),true,name);
 });
 
@@ -16,7 +16,7 @@ test('export uses explicit fictional examples, includes local code, omits privat
   const put=(name,text) => {const p=path.join(root,name);mkdirSync(path.dirname(p),{recursive:true});writeFileSync(p,text);};
   execFileSync('git',['init','-q'],{cwd:root});
   put('portals.yml','private committed targeting'); put('examples/tuloy/portals.example.yml','portals: []');
-  for(const name of ['config/profile.example.yml','config/plugins.example.yml','config/cv-facts.example.json']) put(name,'{}');
+  for(const name of ['config/profile.example.yml','config/plugins.example.yml','config/cv-facts.example.json','config/career-strategies.example.json']) put(name,'{}');
   execFileSync('git',['add','.'],{cwd:root});
   execFileSync('git',['-c','user.name=Fixture','-c','user.email=fixture@example.invalid','commit','-qm','Fictional baseline'],{cwd:root});
   put('portals.yml','PRIVATE targeting'); put('config/profile.yml','PRIVATE profile'); put('data/applications.md','PRIVATE tracker');

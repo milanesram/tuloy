@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "revision": 0,
+  "active": "legacy",
+  "routes": [{
+    "code": "OPERATIONS",
+    "label": "Example operations route",
+    "resume": "Your-approved-resume.docx",
+    "titleTerms": ["operations analyst"],
+    "dutyTerms": ["process improvement", "service delivery"],
+    "excludeTerms": []
+  }]
+}

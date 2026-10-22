@@ -19,3 +19,9 @@ For PDF import and AI-assisted evaluation, choose an installed, authenticated to
 5. Apply through the employer yourself. Record the outcome and use Follow-ups for subsequent actions.
 
 Existing `CAREER_OPS_*` environment variables and data paths are retained for compatibility. An existing personalized installation continues to use its own configuration; the source export omits it. Use `npm run build` and `npm run serve` for a production build served locally. Never publish the live server or its build output.
+
+## Workspace tools
+
+Open Career strategies to define routes and choose when to activate them. Your existing strategy remains in use until you save a change; custom routes still require a scope review. Documents searches existing PDF, Word, text, and Markdown files under documents, output, and reports without changing them.
+
+Scheduled discovery lets you save explicit filters, run a search manually, and inspect its coverage before adding results to Review. New schedules start paused. On macOS, install the background worker from this page, then enable only schedules you want to run. The worker runs locally while your computer is awake and you are signed in; it does not apply to jobs. See [the complete feature guide](workspace-features.md).

@@ -81,7 +81,10 @@
     "serve": "npm --prefix web run start -- --hostname 127.0.0.1 --port 3210",
     "share:prepare": "node scripts/prepare-tuloy-showcase.mjs",
     "github:prepare": "node scripts/publish-tuloy.mjs",
-    "github:push": "node scripts/publish-tuloy.mjs --push"
+    "github:push": "node scripts/publish-tuloy.mjs --push",
+    "discovery:tick": "node discovery-scheduler.mjs tick",
+    "discovery:install": "node discovery-scheduler.mjs install",
+    "test:workspace": "node --test tests/workspace-features.test.mjs tests/opportunity-workflow.test.mjs"
   },
   "keywords": [
     "ai",

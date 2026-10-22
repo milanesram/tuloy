@@ -27,6 +27,7 @@ Setup asks for your own name, location, target roles, and a text/Markdown CV. Yo
 - Review job details, qualification evidence, and unresolved requirements.
 - Keep discoveries separate from applications, save roles for review, dismiss unsuitable roles, and restore them later.
 - Track applications, outcomes, and follow-ups in local files.
+- Configure career routes, browse saved documents, and schedule discovery with your own filters. New schedules start paused; scan results need an explicit action to enter Review.
 - Use your configured AI tool for evaluation, CV preparation, and other assisted workflows. You review and submit applications yourself.
 
 Explore can search supported ATS datasets with the filters you enter. Direct employer-board scanning uses your own `portals.yml`. Availability and coverage depend on the source. Browser-based workflows need `npx playwright install chromium`. AI features need a supported installed and authenticated tool selected in Settings; public HTTP-based discovery does not require an AI key.
@@ -45,6 +46,7 @@ Tuloy is my customized version of [Career Ops](https://github.com/career-ops-hq/
 
 ```sh
 npm run test:tuloy
+npm run test:workspace
 node --test tests/manual-review-queue.test.mjs tests/ops-dismiss.test.mjs tests/fresh-search.test.mjs
 npm --prefix web test
 npm --prefix web run typecheck
@@ -52,6 +54,6 @@ npm run build
 npm run serve
 ```
 
-[Validation notes](docs/tuloy/validation.md) · [Preparing a clean source copy](docs/tuloy/sharing.md)
+[Strategies, documents, and scheduled discovery](docs/tuloy/workspace-features.md) · [Validation notes](docs/tuloy/validation.md) · [Preparing a clean source copy](docs/tuloy/sharing.md)
 
 For maintainers: [publish code updates without runtime data](docs/tuloy/sharing.md#publishing-future-updates).

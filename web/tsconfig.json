@@ -37,7 +37,13 @@
     ".next-tuloy/types/**/*.ts",
     ".next-tuloy/dev/types/**/*.ts",
     ".next-improvements-20261022-a/types/**/*.ts",
-    ".next-improvements-20261022-a/dev/types/**/*.ts"
+    ".next-improvements-20261022-a/dev/types/**/*.ts",
+    ".next-improvements-20261022-b/types/**/*.ts",
+    ".next-improvements-20261022-b/dev/types/**/*.ts",
+    ".next-improvements-20261022-c/types/**/*.ts",
+    ".next-improvements-20261022-c/dev/types/**/*.ts",
+    ".next-features-20261022/types/**/*.ts",
+    ".next-features-20261022/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

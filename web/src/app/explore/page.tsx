@@ -9,11 +9,16 @@ import { DEFAULT_FILTERS } from "@/lib/explore";
 export const dynamic = "force-dynamic";
 
 export default function ExplorePage() {
+  const candidateEvidence = configuredCandidateEvidence();
   let seed: { filters: typeof DEFAULT_FILTERS; seededFrom: string[] } = { filters: DEFAULT_FILTERS, seededFrom: [] };
   try {
     seed = seedExploreFilters();
   } catch {
     /* bare checkout → defaults */
+  }
+  if (candidateEvidence.careerStrategy.active === 'custom') {
+    const terms = [...new Set<string>((candidateEvidence.careerStrategy.routes as Array<{titleTerms:string[];dutyTerms:string[]}>).flatMap(route => route.titleTerms.length ? route.titleTerms : route.dutyTerms))];
+    seed = { filters: { ...seed.filters, positive: terms, negative: [] }, seededFrom: ['custom career strategy'] };
   }
   let rootExists = false;
   try {
@@ -22,6 +27,6 @@ export default function ExplorePage() {
     /* ignore */
   }
   return (
-    <ExplorerView seed={seed} inboxSnapshot={readInbox()} appsSnapshot={readApplications()} rootExists={rootExists} qualificationContext={{ candidateLocation: configuredCandidateLocation(), candidateEvidence: configuredCandidateEvidence(), daily: configuredDailySearch() }} />
+    <ExplorerView seed={seed} inboxSnapshot={readInbox()} appsSnapshot={readApplications()} rootExists={rootExists} qualificationContext={{ candidateLocation: configuredCandidateLocation(), candidateEvidence, daily: configuredDailySearch() }} />
   );
 }

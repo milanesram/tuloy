@@ -2,6 +2,7 @@ import Link from "next/link";
 import { pipelineSummary } from "@/lib/career-ops";
 import { canonStatus, scoreNum } from "@/lib/format";
 import { cumulativeTiles } from "@/lib/funnel-tiles.mjs";
+import { PreparationStats } from '@/components/ops/preparation-stats';
 
 export const dynamic = "force-dynamic";
 
@@ -68,6 +69,8 @@ export default function Analytics() {
           hint={offers === 0 ? "Offers follow interviews — keep the conversations going →" : undefined}
         />
       </div>
+
+      <PreparationStats />
 
       <Section title="Pipeline by stage">
         {stageCounts.map((s) => (

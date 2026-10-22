@@ -22,7 +22,7 @@ export function publishable(name) {
   if (['PUBLICATION-MANIFEST.json','SHOWCASE-MANIFEST.json'].includes(normalized)) return false;
   if (LEGACY_PRESENTATION.has(normalized) || /^README\.(?!md$)[a-z]/.test(normalized)) return false;
   if (/\.(?:mp4|mov|zip|tar|gz)$/i.test(normalized)) return false;
-  if (normalized.startsWith('docs/tuloy/')) return ['brand.md','mark.svg','wordmark.svg','using-tuloy.md','sharing.md','validation.md','ci-template.yml'].includes(parts.at(-1));
+  if (normalized.startsWith('docs/tuloy/')) return ['brand.md','mark.svg','wordmark.svg','using-tuloy.md','sharing.md','validation.md','ci-template.yml','preparation.md','workspace-features.md'].includes(parts.at(-1));
   if (parts[0] === 'docs') return ['SUPPORTED_CLIS.md','SUPPORTED_JOB_BOARDS.md','SETUP.md','CUSTOMIZATION.md','RUNNING_ON_A_BUDGET.md','SCRIPTS.md','WINDOWS.md','FAQ.md','APPLY_AUTOFILL.md','PLUGINS.md','FREE_TIER.md','authenticated-job-discovery.md'].includes(parts.at(-1));
   if (/^config\//.test(normalized)) return false;
   return true;
@@ -36,7 +36,7 @@ export function exportShowcase(root, destination) {
   // Explicit safe defaults: never copy the active personal targeting configuration.
   // Active search preferences are never shipped, even as an existing tracked file.
   entries.push(['config/portals.example.yml',Buffer.from('title_filter:\n  positive: []\n  negative: []\nlocation_filter:\n  allow: []\ntracked_companies: []\njob_boards: []\n')]);
-  for (const name of ['config/profile.example.yml','config/plugins.example.yml','config/cv-facts.example.json']) {
+  for (const name of ['config/profile.example.yml','config/plugins.example.yml','config/cv-facts.example.json','config/career-strategies.example.json']) {
     entries.push([name,fs.readFileSync(path.join(root,name))]);
   }
   entries.push(['.github/workflows/tuloy-ci.yml',fs.readFileSync(path.join(root,'docs/tuloy/ci-template.yml'))]);

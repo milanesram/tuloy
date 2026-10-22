@@ -15,6 +15,7 @@ jobs:
       - run: npm install --ignore-scripts
       - run: npm --prefix web ci --ignore-scripts
       - run: npm run test:tuloy
+      - run: npm run test:workspace
       - run: node --test tests/manual-review-queue.test.mjs tests/ops-dismiss.test.mjs tests/fresh-search.test.mjs
       - run: npm --prefix web test
       - run: npm --prefix web run typecheck

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -19,6 +19,8 @@ import { Badge } from "@/components/ui/badge";
 import { CompanyLogo } from "@/components/company-logo";
 import { StatusSelect } from "@/components/status-select";
 import { cn } from "@/lib/cn";
+import { PreparationNotes } from './preparation-notes';
+import { preparationKey } from '@/lib/preparation.mjs';
 
 type CopyState = "jd" | "handoff" | null;
 
@@ -34,8 +36,18 @@ export function OpsView({ data }: { data: OpsSummary }) {
   const [submitting, setSubmitting] = useState(false);
   const [dismissing, setDismissing] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const preparationDirty = useRef(false);
+  const onPreparationDirty = useCallback((dirty: boolean) => { preparationDirty.current = dirty; }, []);
+  function chooseOpportunity(id: string) {
+    if (preparationDirty.current && !window.confirm('Discard unsaved preparation edits before switching opportunities?')) return;
+    setSelectedId(id);
+  }
   const selected = all.find((job) => job.id === selectedId) ?? all[0] ?? null;
   const variantGroup = data.queue.find(job => job.id === selected?.id || job.postingVariants?.some(v => v.id === selected?.id));
+  const onPreparationStage = useCallback((url: string, stage: string) => {
+    const job = all.find(item => preparationKey(item.url) === url);
+    setSelectedForApplicationId(['selected', 'preparing', 'ready'].includes(stage) ? job?.id ?? null : null);
+  }, [all]);
 
   async function copy(value: string, kind: Exclude<CopyState, null>) {
     try {
@@ -122,7 +134,7 @@ export function OpsView({ data }: { data: OpsSummary }) {
             jobs={data.dailyReviewEnabled ? verified : data.queue}
             selectedId={variantGroup?.id ?? selected?.id ?? ""}
             selectedForApplicationId={selectedForApplicationId}
-            onSelect={setSelectedId}
+            onSelect={chooseOpportunity}
           />
           {data.dailyReviewEnabled && <QueueSection
             title="NEWLY DISCOVERED — POSTING DATE UNVERIFIED"
@@ -130,7 +142,7 @@ export function OpsView({ data }: { data: OpsSummary }) {
             jobs={newlyDiscovered}
             selectedId={variantGroup?.id ?? selected?.id ?? ""}
             selectedForApplicationId={selectedForApplicationId}
-            onSelect={setSelectedId}
+            onSelect={chooseOpportunity}
           />}
           {data.dailyReviewEnabled && <QueueSection
             title="MANUAL EVIDENCE REVIEW"
@@ -138,7 +150,7 @@ export function OpsView({ data }: { data: OpsSummary }) {
             jobs={manualReview}
             selectedId={variantGroup?.id ?? selected?.id ?? ""}
             selectedForApplicationId={selectedForApplicationId}
-            onSelect={setSelectedId}
+            onSelect={chooseOpportunity}
           />}
           <QueueSection
             title="Application Tracker"
@@ -146,7 +158,7 @@ export function OpsView({ data }: { data: OpsSummary }) {
             jobs={data.tracked}
             selectedId={selected?.id ?? ""}
             selectedForApplicationId={selectedForApplicationId}
-            onSelect={setSelectedId}
+            onSelect={chooseOpportunity}
           />
         </aside>
 
@@ -180,6 +192,7 @@ export function OpsView({ data }: { data: OpsSummary }) {
                   </div>
 
                   <div className="flex flex-wrap gap-2">
+                    <a href="#preparation-notes" className="inline-flex min-h-10 items-center rounded-full border border-border px-3.5 py-2 text-xs font-medium text-muted hover:text-brand-text">Preparation notes</a>
                     {selected.kind === "review" && !selected.trackerId && (
                       <button type="button" disabled={dismissing || submitting || !isSafeWebUrl(selected.url)}
                         onClick={() => void markNotAFit(selected)}
@@ -223,7 +236,7 @@ export function OpsView({ data }: { data: OpsSummary }) {
               </div>
 
               <div className="space-y-7 px-5 py-6 sm:px-7">
-                {variantGroup?.postingVariants?.length ? <div className="flex flex-wrap gap-2" aria-label="Verified requisition posting variants">{[variantGroup, ...variantGroup.postingVariants].map(variant => <button key={variant.id} type="button" className="rounded border border-border px-3 py-2 text-sm" onClick={() => setSelectedId(variant.id)}>{variant.location} · posting {variant.sourceId}</button>)}</div> : null}
+                {variantGroup?.postingVariants?.length ? <div className="flex flex-wrap gap-2" aria-label="Verified requisition posting variants">{[variantGroup, ...variantGroup.postingVariants].map(variant => <button key={variant.id} type="button" className="rounded border border-border px-3 py-2 text-sm" onClick={() => chooseOpportunity(variant.id)}>{variant.location} · posting {variant.sourceId}</button>)}</div> : null}
                 <dl className="grid gap-x-6 gap-y-4 sm:grid-cols-2 xl:grid-cols-3">
                   <Field label={`Identifier (${selected.requisitionType})`} value={selected.requisition} />
                   <Field label="Employer requisition" value={selected.employerRequisitionId} />
@@ -311,6 +324,8 @@ export function OpsView({ data }: { data: OpsSummary }) {
                   )}
                 </section>
 
+                <PreparationNotes key={selected.url} job={selected} onStage={onPreparationStage} onDirty={onPreparationDirty} />
+
                 <section className="rounded-xl border border-border bg-background/50 p-4">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
@@ -323,19 +338,7 @@ export function OpsView({ data }: { data: OpsSummary }) {
                       )}
 
                       {(!selected.applicationStatus || selected.applicationStatus === "Evaluated") && (
-                        <button
-                          type="button"
-                          onClick={() => setSelectedForApplicationId(selected.id)}
-                          className={cn(
-                            "inline-flex min-h-10 items-center gap-1.5 rounded-full border px-3.5 py-2 text-xs font-medium transition",
-                            selectedForApplicationId === selected.id
-                              ? "border-brand/50 bg-brand-soft text-brand-text"
-                              : "border-border bg-surface hover:border-brand/50 hover:text-brand-text",
-                          )}
-                        >
-                          <BriefcaseBusiness className="size-3.5" />
-                          {selectedForApplicationId === selected.id ? "Selected for Application" : "Select for Application"}
-                        </button>
+                        <a href="#preparation-notes" className="inline-flex min-h-10 items-center rounded-full border border-border px-3.5 py-2 text-xs font-medium text-muted hover:text-brand-text">Manage preparation above</a>
                       )}
 
                       {selectedForApplicationId === selected.id && selected.applicationStatus !== "Applied" && (
